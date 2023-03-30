@@ -9,6 +9,9 @@ import {
   publicProcedure,
 } from "~/server/api/trpc";
 
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+
 const filterUserForClient = (user: User) => {
   return {
     id: user.id,
@@ -17,12 +20,9 @@ const filterUserForClient = (user: User) => {
   };
 };
 
-import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
-import { Redis } from "@upstash/redis";
-
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(10, "10 s"),
+  limiter: Ratelimit.slidingWindow(10, "3 s"),
   analytics: true,
   /**
    * Optional prefix for the keys used in redis. This is useful if you want to share a redis
@@ -36,9 +36,7 @@ export const postsRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     const posts = await ctx.prisma.post.findMany({
       take: 100,
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: [{ createdAt: "desc" }],
     });
 
     const users = (
@@ -82,7 +80,6 @@ export const postsRouter = createTRPCRouter({
       if (!success) {
         throw new TRPCError({
           code: "TOO_MANY_REQUESTS",
-          message: "You are posting too fast",
         });
       }
 
