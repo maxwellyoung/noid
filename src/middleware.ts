@@ -1,5 +1,4 @@
 import { withClerkMiddleware } from "@clerk/nextjs/server";
-import { copyFileSync } from "fs";
 import { NextResponse } from "next/server";
 
 export default withClerkMiddleware(() => {
