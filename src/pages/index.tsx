@@ -103,7 +103,7 @@ const Home: NextPage = () => {
   return (
     <>
       <PageLayout>
-        <div className="flex rounded-md border border-zinc-800 bg-slate-800 p-4">
+        <div className="flex rounded-md border border-zinc-800 bg-slate-800  p-4">
           {!isSignedIn && (
             <div className="flex justify-center text-slate-400 ">
               <SignInButton />

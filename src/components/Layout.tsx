@@ -24,11 +24,11 @@ export const PageLayout = (props: PropsWithChildren) => {
           />
           {props.children}
           <div className="scrolling-footer">
-            <p>
-              <a href="https://www.maxwellyoung.info/code">
+            <p className="scrolling-text">
+              <a href="https://maxwellyoung.info/code/noid">
                 This is a Twitter clone developed by Maxwell Young using React,
-                Next.js, Tailwind CSS, TRPC, Prisma and Planetscale in the year
-                2023. For more information on this project, click here.
+                Next.js, Tailwind CSS, TRPC, Prisma, and Planetscale in the year
+                2023.
               </a>
             </p>
           </div>
@@ -36,14 +36,19 @@ export const PageLayout = (props: PropsWithChildren) => {
       </main>
       <style jsx>{`
         .scrolling-footer {
-          // background-color: #111;
+          background-color: #111;
           color: #fff;
           padding: 8px;
           position: fixed;
           bottom: 0;
           left: 0;
           width: 100%;
+          overflow: hidden;
+        }
+
+        .scrolling-text {
           animation: scroll-left 20s linear infinite;
+          white-space: nowrap;
         }
 
         @keyframes scroll-left {
