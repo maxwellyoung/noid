@@ -37,7 +37,7 @@ const CreatePostWizard = () => {
   return (
     <div className="w-full gap-3">
       <div className="flex flex-col"></div>
-      <div className="flex w-full gap-3">
+      <div className="flex w-full gap-3 ">
         <Image
           src={user.profileImageUrl}
           alt="Profile Image"
@@ -48,7 +48,7 @@ const CreatePostWizard = () => {
         <input
           type="text"
           placeholder="Say whatever you'd like to say"
-          className="grow bg-transparent outline-none"
+          className="grow bg-transparent outline-none "
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
@@ -63,7 +63,22 @@ const CreatePostWizard = () => {
         />
 
         {input != "" && !isPosting && (
-          <button onClick={() => mutate({ content: input })}>Post</button>
+          <button onClick={() => mutate({ content: input })}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="h-6 w-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+          </button>
         )}
 
         {isPosting && (
@@ -103,7 +118,7 @@ const Home: NextPage = () => {
   return (
     <>
       <PageLayout>
-        <div className="flex rounded-md border border-zinc-800 bg-slate-800  p-4">
+        <div className="flex rounded-md border border-zinc-800 bg-slate-800  p-4 duration-200 hover:bg-slate-700">
           {!isSignedIn && (
             <div className="flex justify-center text-slate-400 ">
               <SignInButton />
