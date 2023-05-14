@@ -1,7 +1,6 @@
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Image from "next/image";
-
 import { LoadingPage, LoadingSpinner } from "~/components/Loading";
 import { api } from "~/utils/api";
 import { useState } from "react";
@@ -104,9 +103,9 @@ const Home: NextPage = () => {
   return (
     <>
       <PageLayout>
-        <div className="flex border-b border-t border-slate-400 p-4">
+        <div className="flex rounded-md border border-zinc-800 bg-slate-800 p-4">
           {!isSignedIn && (
-            <div className="flex justify-center">
+            <div className="flex justify-center text-slate-400 ">
               <SignInButton />
             </div>
           )}
